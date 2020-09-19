@@ -66,27 +66,16 @@ library(dplyr)
 ``` r
 library(knitr)
 library(ggplot2)
-```
-
-    ## RStudio Community is a great place to get help:
-    ## https://community.rstudio.com/c/tidyverse
-
-``` r
 library(tidyverse)
 ```
 
-    ## Registered S3 methods overwritten by 'dbplyr':
-    ##   method         from
-    ##   print.tbl_lazy     
-    ##   print.tbl_sql
-
-    ## ── Attaching packages ────────────────────────────────── tidyverse 1.3.0 ──
+    ## ── Attaching packages ──────────────────────────────────────── tidyverse 1.3.0 ──
 
     ## ✓ tibble  3.0.3     ✓ purrr   0.3.4
     ## ✓ tidyr   1.1.2     ✓ stringr 1.4.0
     ## ✓ readr   1.3.1     ✓ forcats 0.5.0
 
-    ## ── Conflicts ───────────────────────────────────── tidyverse_conflicts() ──
+    ## ── Conflicts ─────────────────────────────────────────── tidyverse_conflicts() ──
     ## x dplyr::filter()  masks stats::filter()
     ## x purrr::flatten() masks jsonlite::flatten()
     ## x dplyr::lag()     masks stats::lag()
@@ -125,6 +114,22 @@ get_franchise() # It works well.
     ## This warning is displayed once every 8 hours.
     ## Call `lifecycle::last_warnings()` to see where this warning was generated.
 
+    ## # A tibble: 38 x 7
+    ##    data.id data.firstSeaso… data.lastSeason… data.mostRecent… data.teamCommon…
+    ##      <int>            <int>            <int>            <int> <chr>           
+    ##  1       1         19171918               NA                8 Canadiens       
+    ##  2       2         19171918         19171918               41 Wanderers       
+    ##  3       3         19171918         19341935               45 Eagles          
+    ##  4       4         19191920         19241925               37 Tigers          
+    ##  5       5         19171918               NA               10 Maple Leafs     
+    ##  6       6         19241925               NA                6 Bruins          
+    ##  7       7         19241925         19371938               43 Maroons         
+    ##  8       8         19251926         19411942               51 Americans       
+    ##  9       9         19251926         19301931               39 Quakers         
+    ## 10      10         19261927               NA                3 Rangers         
+    ## # … with 28 more rows, and 2 more variables: data.teamPlaceName <chr>,
+    ## #   total <int>
+
 ## Creating a Function for Accessing Franchise-team-total Data
 
 ``` r
@@ -140,6 +145,29 @@ get_data_totals()# It works well.
 ```
 
     ## No encoding supplied: defaulting to UTF-8.
+
+    ## # A tibble: 105 x 31
+    ##    data.id data.activeFran… data.firstSeaso… data.franchiseId data.gameTypeId
+    ##      <int>            <int>            <int>            <int>           <int>
+    ##  1       1                1         19821983               23               2
+    ##  2       2                1         19821983               23               3
+    ##  3       3                1         19721973               22               2
+    ##  4       4                1         19721973               22               3
+    ##  5       5                1         19261927               10               2
+    ##  6       6                1         19261927               10               3
+    ##  7       7                1         19671968               16               3
+    ##  8       8                1         19671968               16               2
+    ##  9       9                1         19671968               17               2
+    ## 10      10                1         19671968               17               3
+    ## # … with 95 more rows, and 26 more variables: data.gamesPlayed <int>,
+    ## #   data.goalsAgainst <int>, data.goalsFor <int>, data.homeLosses <int>,
+    ## #   data.homeOvertimeLosses <int>, data.homeTies <int>, data.homeWins <int>,
+    ## #   data.lastSeasonId <int>, data.losses <int>, data.overtimeLosses <int>,
+    ## #   data.penaltyMinutes <int>, data.pointPctg <dbl>, data.points <int>,
+    ## #   data.roadLosses <int>, data.roadOvertimeLosses <int>, data.roadTies <int>,
+    ## #   data.roadWins <int>, data.shootoutLosses <int>, data.shootoutWins <int>,
+    ## #   data.shutouts <int>, data.teamId <int>, data.teamName <chr>,
+    ## #   data.ties <int>, data.triCode <chr>, data.wins <int>, total <int>
 
 ## Creating a Function for Accessing Franchise-records Data
 
@@ -168,6 +196,43 @@ get_records('season-records?cayenneExp=franchiseId','Toronto Maple Leafs')
 
     ## No encoding supplied: defaulting to UTF-8.
 
+    ##   id fewestGoals fewestGoalsAgainst fewestGoalsAgainstSeasons
+    ## 1 10         147                131              1953-54 (70)
+    ##   fewestGoalsSeasons fewestLosses fewestLossesSeasons fewestPoints
+    ## 1       1954-55 (70)           16        1950-51 (70)           48
+    ##   fewestPointsSeasons fewestTies fewestTiesSeasons fewestWins
+    ## 1        1984-85 (80)          4      1989-90 (80)         20
+    ##            fewestWinsSeasons franchiseId       franchiseName homeLossStreak
+    ## 1 1981-82 (80), 1984-85 (80)           5 Toronto Maple Leafs              7
+    ##         homeLossStreakDates homePointStreak
+    ## 1 Nov 11 1984 - Dec 05 1984              18
+    ##                                   homePointStreakDates homeWinStreak
+    ## 1 Nov 28 1933 - Mar 10 1934, Oct 31 1953 - Jan 23 1954            13
+    ##          homeWinStreakDates homeWinlessStreak
+    ## 1 Jan 31 2018 - Mar 24 2018                11
+    ##                                 homeWinlessStreakDates lossStreak
+    ## 1 Dec 19 1987 - Jan 25 1988, Feb 11 2012 - Mar 29 2012         10
+    ##             lossStreakDates mostGameGoals           mostGameGoalsDates
+    ## 1 Jan 15 1967 - Feb 08 1967            14 Mar 16 1957 - NYR 1 @ TOR 14
+    ##   mostGoals mostGoalsAgainst mostGoalsAgainstSeasons mostGoalsSeasons
+    ## 1       337              387            1983-84 (80)     1989-90 (80)
+    ##   mostLosses mostLossesSeasons mostPenaltyMinutes mostPenaltyMinutesSeasons
+    ## 1         52      1984-85 (80)               2419              1989-90 (80)
+    ##   mostPoints mostPointsSeasons mostShutouts mostShutoutsSeasons mostTies
+    ## 1        105      2017-18 (82)           13        1953-54 (70)       22
+    ##   mostTiesSeasons mostWins mostWinsSeasons pointStreak
+    ## 1    1954-55 (70)       49    2017-18 (82)          16
+    ##            pointStreakDates roadLossStreak       roadLossStreakDates
+    ## 1 Nov 22 2003 - Dec 26 2003             11 Feb 20 1988 - Apr 01 1988
+    ##   roadPointStreak      roadPointStreakDates roadWinStreak
+    ## 1              11 Dec 03 2016 - Jan 25 2017             7
+    ##                                                                roadWinStreakDates
+    ## 1 Nov 14 1940 - Dec 15 1940, Dec 04 1960 - Jan 05 1961, Jan 29 2003 - Feb 22 2003
+    ##   roadWinlessStreak    roadWinlessStreakDates winStreak
+    ## 1                18 Oct 06 1982 - Jan 05 1983        10
+    ##              winStreakDates winlessStreak        winlessStreakDates
+    ## 1 Oct 07 1993 - Oct 28 1993             6 Nov 09 2019 - Nov 19 2019
+
 ``` r
 #It works well.
 ```
@@ -192,6 +257,33 @@ stats<-function(ID=NULL, modifier=NULL){
 # test if the function works
 stats(ID=NULL,'?expand=team.roster')# It works well.
 ```
+
+    ## # A tibble: 31 x 32
+    ##    copyright teams.id teams.name teams.link teams.abbreviat… teams.teamName
+    ##    <chr>        <int> <chr>      <chr>      <chr>            <chr>         
+    ##  1 NHL and …        1 New Jerse… /api/v1/t… NJD              Devils        
+    ##  2 NHL and …        2 New York … /api/v1/t… NYI              Islanders     
+    ##  3 NHL and …        3 New York … /api/v1/t… NYR              Rangers       
+    ##  4 NHL and …        4 Philadelp… /api/v1/t… PHI              Flyers        
+    ##  5 NHL and …        5 Pittsburg… /api/v1/t… PIT              Penguins      
+    ##  6 NHL and …        6 Boston Br… /api/v1/t… BOS              Bruins        
+    ##  7 NHL and …        7 Buffalo S… /api/v1/t… BUF              Sabres        
+    ##  8 NHL and …        8 Montréal … /api/v1/t… MTL              Canadiens     
+    ##  9 NHL and …        9 Ottawa Se… /api/v1/t… OTT              Senators      
+    ## 10 NHL and …       10 Toronto M… /api/v1/t… TOR              Maple Leafs   
+    ## # … with 21 more rows, and 26 more variables: teams.locationName <chr>,
+    ## #   teams.firstYearOfPlay <chr>, teams.shortName <chr>,
+    ## #   teams.officialSiteUrl <chr>, teams.franchiseId <int>, teams.active <lgl>,
+    ## #   teams.venue.name <chr>, teams.venue.link <chr>, teams.venue.city <chr>,
+    ## #   teams.venue.id <int>, teams.venue.timeZone.id <chr>,
+    ## #   teams.venue.timeZone.offset <int>, teams.venue.timeZone.tz <chr>,
+    ## #   teams.division.id <int>, teams.division.name <chr>,
+    ## #   teams.division.nameShort <chr>, teams.division.link <chr>,
+    ## #   teams.division.abbreviation <chr>, teams.conference.id <int>,
+    ## #   teams.conference.name <chr>, teams.conference.link <chr>,
+    ## #   teams.franchise.franchiseId <int>, teams.franchise.teamName <chr>,
+    ## #   teams.franchise.link <chr>, teams.roster.roster <list>,
+    ## #   teams.roster.link <chr>
 
 ## One-Stop-Shop function
 
@@ -234,6 +326,25 @@ franchise_data <- get_franchise()
 ``` r
 franchise_data<- franchise_data %>% rename(data.franchiseId=data.id) 
 franchise_data
+```
+
+    ## # A tibble: 38 x 7
+    ##    data.franchiseId data.firstSeaso… data.lastSeason… data.mostRecent…
+    ##               <int>            <int>            <int>            <int>
+    ##  1                1         19171918               NA                8
+    ##  2                2         19171918         19171918               41
+    ##  3                3         19171918         19341935               45
+    ##  4                4         19191920         19241925               37
+    ##  5                5         19171918               NA               10
+    ##  6                6         19241925               NA                6
+    ##  7                7         19241925         19371938               43
+    ##  8                8         19251926         19411942               51
+    ##  9                9         19251926         19301931               39
+    ## 10               10         19261927               NA                3
+    ## # … with 28 more rows, and 3 more variables: data.teamCommonName <chr>,
+    ## #   data.teamPlaceName <chr>, total <int>
+
+``` r
 # franchise_total data
 franchise_total <- get_data_totals() 
 ```
@@ -242,6 +353,32 @@ franchise_total <- get_data_totals()
 
 ``` r
 franchise_total
+```
+
+    ## # A tibble: 105 x 31
+    ##    data.id data.activeFran… data.firstSeaso… data.franchiseId data.gameTypeId
+    ##      <int>            <int>            <int>            <int>           <int>
+    ##  1       1                1         19821983               23               2
+    ##  2       2                1         19821983               23               3
+    ##  3       3                1         19721973               22               2
+    ##  4       4                1         19721973               22               3
+    ##  5       5                1         19261927               10               2
+    ##  6       6                1         19261927               10               3
+    ##  7       7                1         19671968               16               3
+    ##  8       8                1         19671968               16               2
+    ##  9       9                1         19671968               17               2
+    ## 10      10                1         19671968               17               3
+    ## # … with 95 more rows, and 26 more variables: data.gamesPlayed <int>,
+    ## #   data.goalsAgainst <int>, data.goalsFor <int>, data.homeLosses <int>,
+    ## #   data.homeOvertimeLosses <int>, data.homeTies <int>, data.homeWins <int>,
+    ## #   data.lastSeasonId <int>, data.losses <int>, data.overtimeLosses <int>,
+    ## #   data.penaltyMinutes <int>, data.pointPctg <dbl>, data.points <int>,
+    ## #   data.roadLosses <int>, data.roadOvertimeLosses <int>, data.roadTies <int>,
+    ## #   data.roadWins <int>, data.shootoutLosses <int>, data.shootoutWins <int>,
+    ## #   data.shutouts <int>, data.teamId <int>, data.teamName <chr>,
+    ## #   data.ties <int>, data.triCode <chr>, data.wins <int>, total <int>
+
+``` r
 # Group franchise_total data by franchiseId
 franchise_total_1 <- group_by(franchise_total,data.franchiseId) %>%
   summarise(totalhomeLosses=sum(data.homeLosses),
@@ -342,6 +479,10 @@ table_type2_wins <- data.frame(c('Active','Non-Active'),wins=c(50938,1147),homew
 table_type2_wins
 ```
 
+    ##   c..Active....Non.Active..  wins homewins roadwins
+    ## 1                    Active 50938    29436    21502
+    ## 2                Non-Active  1147      718      429
+
 ``` r
 # Type 2  losses
 # for active franchise
@@ -372,6 +513,10 @@ type2_losses_non <- id_2 %>% select(data.activeFranchise,data.losses, data.homeL
 table_type2_lossses <- data.frame(c('Active','Non-Active'),losses=c(45599,1663),homelosses=c(18925,660),roadlosses=c(21502,429))
 table_type2_lossses
 ```
+
+    ##   c..Active....Non.Active.. losses homelosses roadlosses
+    ## 1                    Active  45599      18925      21502
+    ## 2                Non-Active   1663        660        429
 
 ``` r
 # Type 3 wins
@@ -404,6 +549,10 @@ table_type3_wins <- data.frame(c('Active','Non-Active'),wins=c(4357,58),homewins
 table_type3_wins
 ```
 
+    ##   c..Active....Non.Active.. wins homewins roadwins
+    ## 1                    Active 4357     2505     1870
+    ## 2                Non-Active   58       21       29
+
 ``` r
 # Type 3  losses
 # for active franchise
@@ -435,6 +584,10 @@ table_type3_losses<- data.frame(c('Active','Non-Active'),losses=c(4352,59),homel
 table_type3_losses
 ```
 
+    ##   c..Active....Non.Active.. losses homelosses roadlosses
+    ## 1                    Active   4352       1866       2486
+    ## 2                Non-Active     59         27         32
+
 It appears like active franchise are more likely to win or loose than
 Non-active franchise.Active franchise conducts much more wins/looses in
 Type 2 games than Type 3 games.Therefore we can make some plots to show
@@ -450,7 +603,7 @@ ggplot(combined,aes(x=data.gameTypeId))+
   ggtitle('Bar plot for Gmae Types')
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
+![](ST558-Project1_files/figure-gfm/unnamed-chunk-14-1.png)<!-- -->
 
 ``` r
 ggplot(combined,aes(x=data.activeFranchise))+
@@ -458,7 +611,7 @@ ggplot(combined,aes(x=data.activeFranchise))+
   ggtitle('Bar plot for Active/Non-active status')
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-16-2.png)<!-- -->
+![](ST558-Project1_files/figure-gfm/unnamed-chunk-14-2.png)<!-- -->
 
 ``` r
 par(mfrow=c(2,3))
@@ -467,7 +620,7 @@ g+geom_histogram(bins = 10) +ylab("Density") + geom_density(adjust=0.4,lwd=2,col
   ggtitle("Histogram plot for wins")
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
+![](ST558-Project1_files/figure-gfm/unnamed-chunk-15-1.png)<!-- -->
 
 ``` r
 g <- ggplot(combined,aes(x=data.homeWins,..density..))
@@ -475,7 +628,7 @@ g+geom_histogram(bins = 10) +ylab("Density") + geom_density(adjust=0.4,lwd=2,col
    ggtitle("Histogram plot for homeWins")
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-17-2.png)<!-- -->
+![](ST558-Project1_files/figure-gfm/unnamed-chunk-15-2.png)<!-- -->
 
 ``` r
 g <- ggplot(combined,aes(x=data.roadWins,..density..))
@@ -483,7 +636,7 @@ g+geom_histogram(bins = 10) +ylab("Density") + geom_density(adjust=0.4,lwd=2,col
    ggtitle("Histogram plot for roadWins")
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-17-3.png)<!-- -->
+![](ST558-Project1_files/figure-gfm/unnamed-chunk-15-3.png)<!-- -->
 
 ``` r
 g <- ggplot(combined,aes(x=data.losses,..density..))
@@ -491,7 +644,7 @@ g+geom_histogram(bins = 10) +ylab("Density") + geom_density(adjust=0.4,lwd=2,col
   ggtitle("Histogram plot for losses")
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-17-4.png)<!-- -->
+![](ST558-Project1_files/figure-gfm/unnamed-chunk-15-4.png)<!-- -->
 
 ``` r
 g <- ggplot(combined,aes(x=data.homeLosses,..density..))
@@ -499,7 +652,7 @@ g+geom_histogram(bins = 10) +ylab("Density") + geom_density(adjust=0.4,lwd=2,col
    ggtitle("Histogram plot for homeLosses")
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-17-5.png)<!-- -->
+![](ST558-Project1_files/figure-gfm/unnamed-chunk-15-5.png)<!-- -->
 
 ``` r
 g <- ggplot(combined,aes(x=data.roadLosses,..density..))
@@ -507,7 +660,7 @@ g+geom_histogram(bins = 10) +ylab("Density") + geom_density(adjust=0.4,lwd=2,col
    ggtitle("Histogram plot for roadLosses")
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-17-6.png)<!-- -->
+![](ST558-Project1_files/figure-gfm/unnamed-chunk-15-6.png)<!-- -->
 
 ``` r
 # From the following boxplots we can see for active franchise with type 2 game are more likely to have high losses or wins;Active franchise with type 3 games are more likely to have low losses or wins
@@ -517,7 +670,7 @@ ggplot(combined,aes(x=data.activeFranchise,y=data.wins)) +
   ggtitle('Boxplot for wins')
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-18-1.png)<!-- -->
+![](ST558-Project1_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
 
 ``` r
 ggplot(combined,aes(x=data.activeFranchise,y=data.losses)) +
@@ -526,7 +679,7 @@ ggplot(combined,aes(x=data.activeFranchise,y=data.losses)) +
   ggtitle('Boxplot for losses')
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-18-2.png)<!-- -->
+![](ST558-Project1_files/figure-gfm/unnamed-chunk-16-2.png)<!-- -->
 
 ``` r
 ggplot(combined,aes(x=data.gameTypeId,y=data.wins)) +
@@ -535,7 +688,7 @@ ggplot(combined,aes(x=data.gameTypeId,y=data.wins)) +
   ggtitle('Boxplot for wins')
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-18-3.png)<!-- -->
+![](ST558-Project1_files/figure-gfm/unnamed-chunk-16-3.png)<!-- -->
 
 ``` r
 ggplot(combined,aes(x=data.gameTypeId,y=data.losses)) +
@@ -544,7 +697,7 @@ ggplot(combined,aes(x=data.gameTypeId,y=data.losses)) +
   ggtitle('Boxplot for losses')
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-18-4.png)<!-- -->
+![](ST558-Project1_files/figure-gfm/unnamed-chunk-16-4.png)<!-- -->
 
 ``` r
 ggplot(combined,aes(x=data.gameTypeId,y=HomeWinsPercent)) +
@@ -557,7 +710,7 @@ ggplot(combined,aes(x=data.gameTypeId,y=HomeWinsPercent)) +
 
     ## Warning: Removed 4 rows containing missing values (geom_point).
 
-![](README_files/figure-gfm/unnamed-chunk-19-1.png)<!-- -->
+![](ST558-Project1_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
 
 ``` r
 ggplot(combined,aes(x=data.gameTypeId,y=HomeLossesPercent)) +
@@ -566,7 +719,7 @@ ggplot(combined,aes(x=data.gameTypeId,y=HomeLossesPercent)) +
   ggtitle('Boxplot for homelosses')
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-19-2.png)<!-- -->
+![](ST558-Project1_files/figure-gfm/unnamed-chunk-17-2.png)<!-- -->
 
 ``` r
 ggplot(combined,aes(x=data.gameTypeId,y=RoadWinsPercent)) +
@@ -579,7 +732,7 @@ ggplot(combined,aes(x=data.gameTypeId,y=RoadWinsPercent)) +
     
     ## Warning: Removed 4 rows containing missing values (geom_point).
 
-![](README_files/figure-gfm/unnamed-chunk-19-3.png)<!-- -->
+![](ST558-Project1_files/figure-gfm/unnamed-chunk-17-3.png)<!-- -->
 
 ``` r
 ggplot(combined,aes(x=data.gameTypeId,y=RoadLossesPercent)) +
@@ -588,9 +741,9 @@ ggplot(combined,aes(x=data.gameTypeId,y=RoadLossesPercent)) +
   ggtitle('Boxplot for roadlosses')
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-19-4.png)<!-- --> The four
-plots show that type 3 game accounts less roadlosses percentage and more
-homelosses percentage.
+![](ST558-Project1_files/figure-gfm/unnamed-chunk-17-4.png)<!-- --> The
+four plots show that type 3 game accounts less roadlosses percentage and
+more homelosses percentage.
 
 ``` r
 # The two scatterplots show us usually high wins associated with high losses
@@ -603,7 +756,7 @@ ggplot(combined,aes(x=data.wins,y=data.losses,group=data.gameTypeId)) +
 
     ## `geom_smooth()` using formula 'y ~ x'
 
-![](README_files/figure-gfm/unnamed-chunk-20-1.png)<!-- -->
+![](ST558-Project1_files/figure-gfm/unnamed-chunk-18-1.png)<!-- -->
 
 ``` r
 ggplot(combined,aes(x=data.wins,y=data.losses,group=data.activeFranchise)) +
@@ -614,7 +767,7 @@ ggplot(combined,aes(x=data.wins,y=data.losses,group=data.activeFranchise)) +
 
     ## `geom_smooth()` using formula 'y ~ x'
 
-![](README_files/figure-gfm/unnamed-chunk-20-2.png)<!-- -->
+![](ST558-Project1_files/figure-gfm/unnamed-chunk-18-2.png)<!-- -->
 
 ``` r
 ggplot(combined,aes(x=data.homeWins,y=data.homeLosses,group=data.gameTypeId)) +
@@ -625,7 +778,7 @@ ggplot(combined,aes(x=data.homeWins,y=data.homeLosses,group=data.gameTypeId)) +
 
     ## `geom_smooth()` using formula 'y ~ x'
 
-![](README_files/figure-gfm/unnamed-chunk-21-1.png)<!-- -->
+![](ST558-Project1_files/figure-gfm/unnamed-chunk-19-1.png)<!-- -->
 
 ``` r
 ggplot(combined,aes(x=data.roadWins,y=data.roadLosses,group=data.gameTypeId)) +
@@ -636,7 +789,7 @@ ggplot(combined,aes(x=data.roadWins,y=data.roadLosses,group=data.gameTypeId)) +
 
     ## `geom_smooth()` using formula 'y ~ x'
 
-![](README_files/figure-gfm/unnamed-chunk-21-2.png)<!-- -->
+![](ST558-Project1_files/figure-gfm/unnamed-chunk-19-2.png)<!-- -->
 
 We actually got the consistent conclusion from the above
 barplots,histogram plots,boxplots and scatterplots with before.Active
